@@ -207,21 +207,32 @@ export default function BarSales() {
                 setCheckoutTicket(null);
             });
 
-            myCheckout.setCallback('payment_complete', async (data) => {
-                console.log('Payment complete:', data);
-                addDebugLog('Payment complete!');
-                
-                // Record purchase completion
-                try {
-                    // You can add Railway API call here to save bar purchase if needed
-                    console.log('Bar purchase completed for RFID:', rfidTagId);
-                } catch (err) {
-                    console.error('Error recording purchase:', err);
-                }
+  myCheckout.setCallback('payment_complete', async (data) => {
+    console.log('Payment complete:', data);
+    addDebugLog('Payment complete!');
 
-                setShowCheckout(false);
-                setStep('success');
+    // Save bar credits to ticket order
+    try {
+        // Find ticket by RFID and add credits
+        const tickets = await api.get('/ticket-orders?rfid_tag_id=' + rfidTagId);
+        if (tickets && tickets.length > 0) {
+            const ticket = tickets[0];
+            const newCredits = (ticket.bar_credits || 0) + selectedQuantity;
+            await api.patch('/ticket-orders/' + ticket.id, {
+                bar_credits: newCredits
             });
+            addDebugLog('Credits saved: ' + newCredits + ' total');
+        } else {
+            addDebugLog('Warning: No ticket found for RFID ' + rfidTagId);
+        }
+    } catch (err) {
+        console.error('Error saving credits:', err);
+        addDebugLog('Error saving credits: ' + err.message);
+    }
+
+    setShowCheckout(false);
+    setStep('success');
+});
 
             myCheckout.startCheckout(checkoutTicket);
         }
