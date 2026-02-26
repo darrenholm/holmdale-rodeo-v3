@@ -55,8 +55,11 @@ import BuyTickets from './pages/BuyTickets';
 import CheckoutCancel from './pages/CheckoutCancel';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import Contact from './pages/Contact';
+import DrinkMenu from './pages/DrinkMenu';
+import DrinkTickets from './pages/DrinkTickets';
 import Events from './pages/Events';
 import FoodAdmin from './pages/FoodAdmin';
+import FoodOrder from './pages/FoodOrder';
 import FoodKiosk from './pages/FoodKiosk';
 import GateScan from './pages/GateScan';
 import Home from './pages/Home';
@@ -87,8 +90,11 @@ export const PAGES = {
     "CheckoutCancel": CheckoutCancel,
     "CheckoutSuccess": CheckoutSuccess,
     "Contact": Contact,
+    "DrinkMenu": DrinkMenu,
+    "DrinkTickets": DrinkTickets,
     "Events": Events,
     "FoodAdmin": FoodAdmin,
+    "FoodOrder": FoodOrder,
     "FoodKiosk": FoodKiosk,
     "GateScan": GateScan,
     "Home": Home,

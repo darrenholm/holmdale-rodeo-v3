@@ -254,8 +254,8 @@ const functions = {
       'createEventRailway':            () => api.post('/events', params),
       'updateEventRailway':            () => api.put(`/events/${params.id}`, params),
       'deleteEventRailway':            () => api.delete(`/events/${params.id}`),
-      'getEventCurrentTier':           () => api.get(`/events/${params.eventId}/current-tier`),
-      'getEventTierData':              () => api.get(`/events/${params.eventId}/current-tier`),
+      'getEventCurrentTier':           () => api.get(`/events/${params.eventId}/tier`),
+      'getEventTierData':              () => api.get(`/events/${params.eventId}/tier-data`),
       'updateEventPrices':             () => api.put(`/events/${params.id}/prices`, params),
       'fixEventPrices':                () => api.post('/events/fix-prices', params),
       
